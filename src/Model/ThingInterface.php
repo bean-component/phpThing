@@ -6,12 +6,12 @@
  * Time: 9:10 PM
  */
 
-namespace Bean\Component\Thing\Model;
+namespace Bean\Thing\Model;
 
 
 /**
  * Class Thing: The most generic type of item.
- * @package Bean\Component\Thing\Model
+ * @package Bean\Thing\Model
  */
 interface ThingInterface {
 	public function getId();

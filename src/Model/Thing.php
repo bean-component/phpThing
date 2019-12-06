@@ -1,11 +1,11 @@
 <?php
 declare(strict_types = 1);
 
-namespace Bean\Component\Thing\Model;
+namespace Bean\Thing\Model;
 
 /**
  * Class Thing: The most generic type of item.
- * @package Bean\Component\Thing\Model
+ * @package Bean\Thing\Model
  */
 abstract class Thing implements ThingInterface {
 	

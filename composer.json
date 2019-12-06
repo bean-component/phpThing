@@ -1,5 +1,5 @@
 {
-    "name": "beancomponent/thing",
+    "name": "bean-component/php-thing",
     "type": "php-component",
     "description": "Provides a Component for Thing Domain Model.",
     "keywords": [ "php thing components" ],
@@ -11,22 +11,37 @@
         }
     ],
     "require": {
-        "php": "^5.6|^7.0"
+        "php": "^5.6|^7.0",
     },
     "require-dev": {
+        "php": "^7.2.5",        
+        "ext-ctype": "*",
+        "ext-iconv": "*",
+        "symfony/console": "5.0.*",
+        "symfony/dotenv": "5.0.*",
+        "symfony/flex": "^1.3.1",
+        "symfony/framework-bundle": "5.0.*",
+        "symfony/yaml": "5.0.*",
+        "symfony/test-pack": "^1.0"        
     },
     "suggest": {
 
     },
     "autoload": {
-        "psr-4": { "Bean\\Component\\Thing\\": "src/" }
+        "psr-4": { "Bean\\Thing\\": "src/" }
     },
     "autoload-dev": {
-        "psr-4": { "Bean\\Component\\Thing\\spec\\": "tests/spec/" }
+        "psr-4": { "Bean\\Thing\\spec\\": "tests/spec/" }
     },
     "extra": {
         "branch-alias": {
             "dev-master": "0.1-dev"
+        }
+    },
+    "scripts": {
+        "auto-scripts": {
+            "cache:clear": "symfony-cmd",
+            "assets:install %PUBLIC_DIR%": "symfony-cmd"
         }
     }
 }
