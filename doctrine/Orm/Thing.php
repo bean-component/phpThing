@@ -1,6 +1,6 @@
 <?php
 
-namespace Bean\Tests\Thing\Doctrine\Orm;
+namespace Bean\Thing\Doctrine\Orm;
 
 use Bean\Thing\Model\ThingInterface;
 use Doctrine\Common\Collections\ArrayCollection;
