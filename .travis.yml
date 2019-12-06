@@ -21,7 +21,6 @@ env:
 matrix:
   fast_finish: true
   include:
-    - php: 7.2
     - php: 7.3
       env: SYMFONY="5.0.*"
         ACTION="update"
