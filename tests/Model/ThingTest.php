@@ -27,28 +27,20 @@ class ThingTest extends TestCase
 
     }
 
-    public function testInitSlug()
-    {
-        $thing = new ThingModel();
-        $thing->setName('ဟယ်လို-ông-anh-đáng-yêu');
-        $thing->initSlug();
-        $this->assertEquals('helo-ong-anh-dang-yeu', $thing->getSlug());
-    }
-
     public function test__GetMagicMethodException()
     {
-        $thing = new ThingModel();
+        $thing = new Thing();
         $this->expectException(NoSuchPropertyException::class);
         $thing->nonExistentProperty;
     }
 
     public function test__GetSetMagicMethod()
     {
-        $thing = new ThingModel();
+        $thing = new Thing();
         $thing->nonExistentProperty = 'value-of-non-existent-property';
         $this->assertEquals('value-of-non-existent-property', $thing->nonExistentProperty);
 
         $this->address = 'My Address';
-        $this->assertEquals('My Address', $this->{ThingModel::DATA_ADDRESS});
+        $this->assertEquals('My Address', $this->{'address'});
     }
 }
