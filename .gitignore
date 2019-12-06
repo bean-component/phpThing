@@ -7,10 +7,13 @@
 /phpunit.xml.dist
 /symfony.lock
 /src/Kernel.php
-/src/Controller/
-/src/Entity/
-/src/Migrations/
-/src/Repository/
+
+/src-symfony
+/src-symfony/Controller/
+/src-symfony/Entity/
+/src-symfony/Migrations/
+/src-symfony/Repository/
+/src-symfony/Kernel.php
 
 ###> symfony/framework-bundle ###
 /.env.local

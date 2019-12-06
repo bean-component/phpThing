@@ -81,4 +81,31 @@ interface ThingInterface {
      * @return ThingInterface
      */
 	public function setDescription(?string $description): self;
+
+    /**
+     * @return null|string
+     */
+    public function getStatus(): ?string;
+
+    /**
+     * @param null|string $status
+     * @return ThingInterface
+     */
+    public function setStatus(?string $status): self;
+
+    /**
+     * @return bool|null
+     */
+    public function isLocked(): bool;
+
+    /**
+     * @return bool|null
+     */
+    public function getLocked(): ?bool;
+
+    /**
+     * @param bool|null $locked
+     * @return ThingInterface
+     */
+    public function setLocked(?bool $locked): self;
 }

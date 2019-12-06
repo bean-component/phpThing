@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tests\Entity;
+namespace Bean\Tests\Thing\Model;
 
 use Bean\Thing\Model\Thing;
 use PHPUnit\Framework\TestCase;

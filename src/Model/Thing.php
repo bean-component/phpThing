@@ -13,7 +13,7 @@ class Thing implements ThingInterface {
 
     const STATUS_DRAFT = 'DRAFT';
     const STATUS_PUBLISHED = 'PUBLISHED';
-    
+
 	protected $id;
 
 	function __construct() {
@@ -113,7 +113,6 @@ class Thing implements ThingInterface {
 
     /**
      * @var array|null
-     * @ORM\Column(type="json", nullable=true)
      */
     protected $data = [];
 
@@ -129,12 +128,18 @@ class Thing implements ThingInterface {
 
         return $this;
     }
-	
+
 	/**
 	 * NOT part of schema.org
 	 * @var boolean
 	 */
 	protected $enabled = false;
+
+    /**
+     * NOT part of schema.org
+     * @var boolean|null
+     */
+    protected $locked = false;
 
     /**
      * NOT part of schema.org
@@ -147,8 +152,15 @@ class Thing implements ThingInterface {
      * @var \DateTime|null
      */
     protected $updatedAt;
-	
-	/**
+
+    /**
+     * NOT part of schema.org
+     * A thing may have a status like DRAFT, OPEN, CLOSED, EXPIRED, ARCHIVED
+     * @var string|null
+     */
+    protected $status;
+
+    /**
 	 * The name of the item.
 	 * @var string|null
 	 */
@@ -158,17 +170,17 @@ class Thing implements ThingInterface {
      * @var string|null
      */
     protected $slug;
-	
+
 	/**
 	 * A description of the item.
 	 * @var string|null
 	 */
 	protected $description;
-	
+
 	public function getId() {
 		return $this->id;
 	}
-	
+
 	/**
 	 * @return bool
 	 */
@@ -229,7 +241,7 @@ class Thing implements ThingInterface {
 		$this->name = $name;
 		return $this;
 	}
-	
+
 	/**
 	 * @return null|string
 	 */
@@ -263,5 +275,48 @@ class Thing implements ThingInterface {
         $this->slug = $slug;
 
         return $this;
+    }
+
+
+    /**
+     * @return null|string
+     */
+    public function getStatus(): ?string
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param null|string $status
+     * @return ThingInterface
+     */
+    public function setStatus(?string $status): ThingInterface
+    {
+        $this->status = $status;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function isLocked(): bool
+    {
+        return !empty($this->locked);
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function getLocked(): ?bool
+    {
+        return $this->locked;
+    }
+
+    /**
+     * @param bool|null $locked
+     * @return ThingInterface
+     */
+    public function setLocked(?bool $locked): ThingInterface
+    {
+        $this->locked = $locked;
     }
 }
