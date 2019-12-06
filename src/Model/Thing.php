@@ -184,6 +184,7 @@ class Thing implements ThingInterface {
      */
 	public function setEnabled(bool $enabled): ThingInterface {
 		$this->enabled = $enabled;
+		return $this;
 	}
 
     /**
@@ -199,6 +200,7 @@ class Thing implements ThingInterface {
      */
     public function setCreatedAt(\DateTime $createdAt): ThingInterface {
         $this->createdAt = $createdAt;
+        return $this;
     }
 
     /**
@@ -214,6 +216,7 @@ class Thing implements ThingInterface {
      */
     public function setUpdatedAt(?\DateTime $updatedAt): ThingInterface {
         $this->updatedAt = $updatedAt;
+        return $this;
     }
 
     /**
@@ -263,7 +266,6 @@ class Thing implements ThingInterface {
     public function setSlug(?string $slug): ThingInterface
     {
         $this->slug = $slug;
-
         return $this;
     }
 
