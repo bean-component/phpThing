@@ -12,6 +12,11 @@ env:
     - SYMFONY_PHPUNIT_DIR=./bin/.phpunit
     - SYMFONY_DEPRECATIONS_HELPER=0
     - ACTION="install"
+    - DATABASE_URL="sqlite:///%kernel.project_dir%/var/app.db"
+    - KERNEL_CLASS='App\Kernel'
+    - APP_SECRET='$ecretf0rt3st'
+    - SYMFONY_DEPRECATIONS_HELPER=999999
+    - PANTHER_APP_ENV=panther
 
 matrix:
   fast_finish: true
@@ -21,12 +26,12 @@ matrix:
       env: SYMFONY="5.0.*"
         ACTION="update"
     # 'php: nightly' is PHP 8.0
-    - php: 7.4snapshot
-  allow_failures:
-    - php: 7.4snapshot
+    - php: 7.4
+#  allow_failures:
+#    - php: 7.4
 
 before_install:
-  - '[[ "$TRAVIS_PHP_VERSION" == "7.4snapshot" ]] || phpenv config-rm xdebug.ini'
+  - '[[ "$TRAVIS_PHP_VERSION" == "7.4" ]] || phpenv config-rm xdebug.ini'
   - composer self-update
   # Set memory to max (memory fail)
   - '[[ "$ACTION" == "install" ]] || echo "memory_limit=-1" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini'
@@ -39,12 +44,20 @@ install:
   - php -r "echo ini_get('memory_limit').PHP_EOL;"
   # install or update
   - composer $ACTION
+  - mkdir src-symfony
+  - sed -ri "s/src/src-symfony/" config/services.yaml
+  - mv src/Controller src-symfony/
+  - mv src/Entity src-symfony/
+  - mv src/Migrations src-symfony/
+  - mv src/Repository src-symfony/
+  - mv src/Kernel.php src-symfony/
+  - mv -f Resources/symfony5-doctrine.yaml config/packages/doctrine.yaml
   - ./bin/phpunit install
 
 script:
   - ./bin/phpunit
   # this checks that the source code follows the Symfony Code Syntax rules
-  - '[[ "$TRAVIS_PHP_VERSION" == "7.4snapshot" ]] || ./vendor/bin/php-cs-fixer fix --diff --dry-run -v'
+  - '[[ "$TRAVIS_PHP_VERSION" == "7.4" ]] || ./vendor/bin/php-cs-fixer fix --diff --dry-run -v'
   # this checks that the YAML config files contain no syntax errors
   - ./bin/console lint:yaml config --parse-tags
   # this checks that the Twig template files contain no syntax errors
