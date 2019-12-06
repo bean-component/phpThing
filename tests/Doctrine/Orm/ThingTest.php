@@ -2,7 +2,7 @@
 
 namespace Bean\Tests\Thing\Doctrine\Orm;
 
-use Bean\Tests\Thing\Doctrine\Orm\Thing;
+use Bean\Thing\Doctrine\Orm\Thing;
 use Doctrine\ORM\Tools\SchemaTool;
 use PHPUnit\Framework\TestCase;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
