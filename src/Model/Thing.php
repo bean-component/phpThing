@@ -20,11 +20,6 @@ class Thing implements ThingInterface {
 		$this->createdAt = new \DateTime();
 	}
 
-    public function initData()
-    {
-
-    }
-
     public function __get($field)
     {
         if (array_key_exists($field, $this->data)) {
@@ -37,11 +32,6 @@ class Thing implements ThingInterface {
     public function __set($field, $value)
     {
         $this->data[$field] = $value;
-    }
-
-    public function initSlug($slug = null)
-    {
-
     }
 
     public function __clone()
@@ -293,6 +283,7 @@ class Thing implements ThingInterface {
     public function setStatus(?string $status): ThingInterface
     {
         $this->status = $status;
+        return $this;
     }
 
     /**
@@ -318,5 +309,6 @@ class Thing implements ThingInterface {
     public function setLocked(?bool $locked): ThingInterface
     {
         $this->locked = $locked;
+        return $this;
     }
 }
