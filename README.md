@@ -12,6 +12,8 @@
 1. Open .env.test.local paste these lines into it
     -  `DATABASE_URL="sqlite:///%kernel.project_dir%/var/app.db"`
 1. Change the *src* folder name in services.yaml to *src-symfony*
+1. Add `"App\\": "src-symfony/",` to *psr-4* under *autoload-dev*
+1. Move generated folders and Kernel.php to src-symfony
 1. Copy the following snippet to doctrine.yaml under *mappings* configuration
 ```
             Bean\Tests\Thing:
@@ -21,7 +23,7 @@
                  prefix: 'Bean\Tests\Thing\Doctrine\Orm'
                  alias: App
 ```
- 
+
 # Dev Workflow
 1. Make change to code
 2. `php bin/phpunit`
