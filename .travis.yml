@@ -43,8 +43,8 @@ before_install:
 install:
   - php -r "echo ini_get('memory_limit').PHP_EOL;"
   # install or update
-  - composer $ACTION
   - mkdir src-symfony
+  - composer $ACTION
   - sed -ri "s/src/src-symfony/" config/services.yaml
   - mv src/Controller src-symfony/
   - mv src/Entity src-symfony/
@@ -61,9 +61,9 @@ script:
   # this checks that the YAML config files contain no syntax errors
   - ./bin/console lint:yaml config --parse-tags
   # this checks that the Twig template files contain no syntax errors
-  - ./bin/console lint:twig templates --env=prod
+#  - ./bin/console lint:twig templates --env=prod
   # this checks that the XLIFF translations contain no syntax errors
-  - ./bin/console lint:xliff translations
+#  - ./bin/console lint:xliff translations
   # this checks that arguments injected into services match type declarations
   - ./bin/console lint:container
   # TODO: replace the old security checker by the new checker provided by the 'symfony' binary
