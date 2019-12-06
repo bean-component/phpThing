@@ -7,7 +7,7 @@ namespace Bean\Thing\Model;
  * Class Thing: The most generic type of item.
  * @package Bean\Thing\Model
  */
-abstract class Thing implements ThingInterface {
+class Thing implements ThingInterface {
 	
 	protected $id;
 
