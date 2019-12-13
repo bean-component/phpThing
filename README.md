@@ -8,6 +8,16 @@
 1. `composer req test --dev`
 
 # How to prepare for Dev
+1. Copy this block of code and paste it to composer.json under replace:
+```
+        "paragonie/random_compat": "2.*",
+        "symfony/polyfill-ctype": "*",
+        "symfony/polyfill-iconv": "*",
+        "symfony/polyfill-php72": "*",
+        "symfony/polyfill-php71": "*",
+        "symfony/polyfill-php70": "*",
+        "symfony/polyfill-php56": "*"
+```
 1. composer install
 1. Open .env.test.local paste these lines into it
     -  `DATABASE_URL="sqlite:///%kernel.project_dir%/var/app.db"`
