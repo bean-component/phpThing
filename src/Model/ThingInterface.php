@@ -25,7 +25,7 @@ interface ThingInterface {
      * @param bool $enabled
      * @return ThingInterface
      */
-	public function setEnabled(bool $enabled): self;
+	public function setEnabled(bool $enabled): ThingInterface;
 
     /**
      * @return \DateTime
@@ -36,7 +36,7 @@ interface ThingInterface {
      * @param \DateTime $createdAt
      * @return ThingInterface
      */
-    public function setCreatedAt(\DateTime $createdAt): self;
+    public function setCreatedAt(\DateTime $createdAt): ThingInterface;
 
     /**
      * @return \DateTime|null
@@ -47,7 +47,7 @@ interface ThingInterface {
      * @param \DateTime|null $createdAt
      * @return ThingInterface
      */
-    public function setUpdatedAt(?\DateTime $createdAt): self;
+    public function setUpdatedAt(?\DateTime $createdAt): ThingInterface;
 	
 	/**
 	 * @return null|string
@@ -58,7 +58,7 @@ interface ThingInterface {
      * @param null|string $name
      * @return ThingInterface
      */
-	public function setName(?string $name): self;
+	public function setName(?string $name): ThingInterface;
 
     /**
      * @return string|null
@@ -69,7 +69,7 @@ interface ThingInterface {
      * @param string|null $slug
      * @return ThingInterface
      */
-    public function setSlug(?string $slug): self;
+    public function setSlug(?string $slug): ThingInterface;
 
 	/**
 	 * @return null|string
@@ -80,7 +80,7 @@ interface ThingInterface {
      * @param null|string $description
      * @return ThingInterface
      */
-	public function setDescription(?string $description): self;
+	public function setDescription(?string $description): ThingInterface;
 
     /**
      * @return null|string
@@ -91,7 +91,7 @@ interface ThingInterface {
      * @param null|string $status
      * @return ThingInterface
      */
-    public function setStatus(?string $status): self;
+    public function setStatus(?string $status): ThingInterface;
 
     /**
      * @return bool|null
@@ -107,5 +107,5 @@ interface ThingInterface {
      * @param bool|null $locked
      * @return ThingInterface
      */
-    public function setLocked(?bool $locked): self;
+    public function setLocked(?bool $locked): ThingInterface;
 }
