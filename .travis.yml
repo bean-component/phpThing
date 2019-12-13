@@ -51,6 +51,7 @@ install:
   - mv src/Repository src-symfony/
   - mv src/Kernel.php src-symfony/
   - mv -f Resources/symfony5-doctrine.yaml config/packages/doctrine.yaml
+  - mv -f composer-travis.json composer.json
   - ./bin/phpunit install
 
 script:
