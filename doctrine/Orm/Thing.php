@@ -9,6 +9,8 @@ use Symfony\Component\PropertyAccess\Exception\NoSuchPropertyException;
 
 /**
  * @ORM\Entity()
+ * @ORM\InheritanceType("SINGLE_TABLE")
+ * @ORM\DiscriminatorColumn(name="discr", type="string")
  * @ORM\Table(name="test__thing")
  * @ORM\HasLifecycleCallbacks
  */
