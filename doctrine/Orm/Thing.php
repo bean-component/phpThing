@@ -3,7 +3,6 @@
 namespace Bean\Thing\Doctrine\Orm;
 
 use Bean\Thing\Model\ThingInterface;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\PropertyAccess\Exception\NoSuchPropertyException;
 

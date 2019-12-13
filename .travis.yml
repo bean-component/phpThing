@@ -22,8 +22,8 @@ matrix:
   fast_finish: true
   include:
     - php: 7.3
-      env: SYMFONY="5.0.*"
-        ACTION="update"
+#      env: SYMFONY="5.0.*"
+#        ACTION="update"
     # 'php: nightly' is PHP 8.0
     - php: 7.4
 #  allow_failures:
