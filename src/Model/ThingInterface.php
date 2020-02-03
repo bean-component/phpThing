@@ -85,13 +85,13 @@ interface ThingInterface {
     /**
      * @return null|string
      */
-    public function getStatus(): ?string;
+    public function getState(): ?string;
 
     /**
-     * @param null|string $status
+     * @param null|string $state
      * @return ThingInterface
      */
-    public function setStatus(?string $status): ThingInterface;
+    public function setState(?string $state): ThingInterface;
 
     /**
      * @return bool|null

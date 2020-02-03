@@ -145,10 +145,10 @@ class Thing implements ThingInterface {
 
     /**
      * NOT part of schema.org
-     * A thing may have a status like DRAFT, OPEN, CLOSED, EXPIRED, ARCHIVED
+     * A thing may have a state like DRAFT, OPEN, CLOSED, EXPIRED, ARCHIVED
      * @var string|null
      */
-    protected $status;
+    protected $state;
 
     /**
 	 * The name of the item.
@@ -273,18 +273,18 @@ class Thing implements ThingInterface {
     /**
      * @return null|string
      */
-    public function getStatus(): ?string
+    public function getState(): ?string
     {
-        return $this->status;
+        return $this->state;
     }
 
     /**
-     * @param null|string $status
+     * @param null|string $state
      * @return ThingInterface
      */
-    public function setStatus(?string $status): ThingInterface
+    public function setState(?string $state): ThingInterface
     {
-        $this->status = $status;
+        $this->state = $state;
         return $this;
     }
 
