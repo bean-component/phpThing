@@ -15,8 +15,6 @@ use Symfony\Component\PropertyAccess\Exception\NoSuchPropertyException;
  */
 class Thing extends \Bean\Thing\Model\Thing
 {
-    const STATUS_DRAFT = 'DRAFT';
-    const STATUS_PUBLISHED = 'PUBLISHED';
 
     /**
      * DATA_{PROPERTY} to access the property using const
@@ -64,11 +62,11 @@ class Thing extends \Bean\Thing\Model\Thing
     protected $slug;
 
     /**
-     * A thing may have a status like DRAFT, ACTIVE, OPEN, CLOSED, EXPIRED, ARCHIVED
+     * A thing may have a state such as DRAFT, PUBLISHED, ARCHIVED
      * @var string|null
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    protected $status = self::STATUS_DRAFT;
+    protected $state = self::STATE_DRAFT;
 
     /**
      * @var string|null

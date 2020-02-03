@@ -11,8 +11,8 @@ use Symfony\Component\PropertyAccess\Exception\NoSuchPropertyException;
  */
 class Thing implements ThingInterface {
 
-    const STATUS_DRAFT = 'DRAFT';
-    const STATUS_PUBLISHED = 'PUBLISHED';
+    const STATE_DRAFT = 'DRAFT';
+    const STATE_PUBLISHED = 'PUBLISHED';
 
 	protected $id;
 
