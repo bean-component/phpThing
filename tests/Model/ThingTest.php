@@ -43,4 +43,25 @@ class ThingTest extends TestCase
         $this->address = 'My Address';
         $this->assertEquals('My Address', $this->{'address'});
     }
+
+    public function testLogUpdateEvent()
+    {
+        $thing = new Thing();
+        $thing->logUpdateEvent('name', 'old name', 'new name');
+        $eventLog = $thing->getEventLog();
+
+        $this->assertNotEmpty($eventLog);
+
+        $this->assertArrayHasKey('name', $eventLog);
+        $namePropertyLog = $eventLog['name'];
+        $lastNamePropertyLog_Entry = end($namePropertyLog);
+        $this->assertArrayHasKey('newValue', $lastNamePropertyLog_Entry);
+        $this->assertArrayHasKey('time', $lastNamePropertyLog_Entry);
+        $this->assertArrayHasKey('timeZone', $lastNamePropertyLog_Entry);
+        $namePropertyLog_UpdatedAt = \DateTime::createFromFormat('Y-m-d H:i:s.v', $lastNamePropertyLog_Entry['time']);
+        $this->assertInstanceOf(\DateTime::class, $namePropertyLog_UpdatedAt);
+        $this->assertEquals('old name', $lastNamePropertyLog_Entry['oldValue']);
+        $this->assertEquals('new name', $lastNamePropertyLog_Entry['newValue']);
+
+    }
 }

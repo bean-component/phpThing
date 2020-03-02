@@ -28,6 +28,11 @@ class Thing extends \Bean\Thing\Model\Thing
      */
     protected $data = [];
 
+    /**
+     * @var array|null
+     * @ORM\Column(type="json", nullable=true)
+     */
+    protected $eventLog = [];
 
     public function getData(): ?array
     {

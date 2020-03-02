@@ -1,5 +1,5 @@
 <?php
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Bean\Thing\Model;
 
@@ -9,16 +9,18 @@ use Symfony\Component\PropertyAccess\Exception\NoSuchPropertyException;
  * Class Thing: The most generic type of item.
  * @package Bean\Thing\Model
  */
-class Thing implements ThingInterface {
+class Thing implements ThingInterface
+{
 
     const STATE_DRAFT = 'DRAFT';
     const STATE_PUBLISHED = 'PUBLISHED';
 
-	protected $id;
+    protected $id;
 
-	function __construct() {
-		$this->createdAt = new \DateTime();
-	}
+    function __construct()
+    {
+        $this->createdAt = new \DateTime();
+    }
 
     public function __get($field)
     {
@@ -106,6 +108,56 @@ class Thing implements ThingInterface {
      */
     protected $data = [];
 
+    /**
+     * @var array|null
+     */
+    protected $eventLog = [];
+
+    protected $isEventLoggedInternally = true;
+
+    public function logUpdateEvent($property, $old, $new)
+    {
+        if (!$this->isEventLoggedInternally) {
+            return;
+        }
+        if (!array_key_exists($property, $this->eventLog)) {
+            $this->eventLog[$property] = [];
+        }
+
+        $now = new \DateTime();
+        if (is_scalar($old)) {
+            $oldValue = $old;
+        } elseif ($old instanceof \DateTime) {
+            $oldValue = $old->format('Y-m-d H:i:s.v');
+        } elseif ($old instanceof ThingInterface) {
+            $oldValue = $old->getName().' <'.$old->getId().'>';
+        } else {
+            $oldValue = (string) $old;
+        }
+
+        if (is_scalar($new)) {
+            $newValue = $new;
+        } elseif ($new instanceof \DateTime) {
+            $newValue = $new->format('Y-m-d H:i:s.v');
+        } elseif ($new instanceof ThingInterface) {
+            $newValue = $new->getName().' <'.$new->getId().'>';
+        } else {
+            $newValue = (string) $new;
+        }
+
+        $this->eventLog[$property][] = [
+            'time' => $now->format('Y-m-d H:i:s.v'),
+            'timeZone' => $now->getTimezone()->getName(),
+            'newValue' => $newValue, 'oldValue' => $oldValue
+        ];
+
+    }
+
+
+    public function getEventLog(): ?array
+    {
+        return $this->eventLog;
+    }
 
     public function getData(): ?array
     {
@@ -119,11 +171,11 @@ class Thing implements ThingInterface {
         return $this;
     }
 
-	/**
-	 * NOT part of schema.org
-	 * @var boolean
-	 */
-	protected $enabled = false;
+    /**
+     * NOT part of schema.org
+     * @var boolean
+     */
+    protected $enabled = false;
 
     /**
      * NOT part of schema.org
@@ -151,46 +203,50 @@ class Thing implements ThingInterface {
     protected $state;
 
     /**
-	 * The name of the item.
-	 * @var string|null
-	 */
-	protected $name;
+     * The name of the item.
+     * @var string|null
+     */
+    protected $name;
 
     /**
      * @var string|null
      */
     protected $slug;
 
-	/**
-	 * A description of the item.
-	 * @var string|null
-	 */
-	protected $description;
+    /**
+     * A description of the item.
+     * @var string|null
+     */
+    protected $description;
 
-	public function getId() {
-		return $this->id;
-	}
+    public function getId()
+    {
+        return $this->id;
+    }
 
-	/**
-	 * @return bool
-	 */
-	public function isEnabled(): bool {
-		return $this->enabled;
-	}
+    /**
+     * @return bool
+     */
+    public function isEnabled(): bool
+    {
+        return $this->enabled;
+    }
 
     /**
      * @param bool $enabled
      * @return Thing
      */
-	public function setEnabled(bool $enabled): ThingInterface {
-		$this->enabled = $enabled;
-		return $this;
-	}
+    public function setEnabled(bool $enabled): ThingInterface
+    {
+        $this->enabled = $enabled;
+        return $this;
+    }
 
     /**
      * @return \DateTime
      */
-    public function getCreatedAt(): \DateTime {
+    public function getCreatedAt(): \DateTime
+    {
         return $this->createdAt;
     }
 
@@ -198,7 +254,8 @@ class Thing implements ThingInterface {
      * @param \DateTime $createdAt
      * @return Thing
      */
-    public function setCreatedAt(\DateTime $createdAt): ThingInterface {
+    public function setCreatedAt(\DateTime $createdAt): ThingInterface
+    {
         $this->createdAt = $createdAt;
         return $this;
     }
@@ -206,7 +263,8 @@ class Thing implements ThingInterface {
     /**
      * @return \DateTime|null
      */
-    public function getUpdatedAt(): ?\DateTime {
+    public function getUpdatedAt(): ?\DateTime
+    {
         return $this->updatedAt;
     }
 
@@ -214,42 +272,47 @@ class Thing implements ThingInterface {
      * @param \DateTime|null $updatedAt
      * @return Thing
      */
-    public function setUpdatedAt(?\DateTime $updatedAt): ThingInterface {
+    public function setUpdatedAt(?\DateTime $updatedAt): ThingInterface
+    {
         $this->updatedAt = $updatedAt;
         return $this;
     }
 
     /**
-	 * @return null|string
-	 */
-	public function getName(): ?string {
-		return $this->name;
-	}
+     * @return null|string
+     */
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
 
     /**
      * @param null|string $name
      * @return Thing
      */
-	public function setName(?string $name): ThingInterface {
-		$this->name = $name;
-		return $this;
-	}
+    public function setName(?string $name): ThingInterface
+    {
+        $this->name = $name;
+        return $this;
+    }
 
-	/**
-	 * @return null|string
-	 */
-	public function getDescription(): ?string {
-		return $this->description;
-	}
+    /**
+     * @return null|string
+     */
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
 
     /**
      * @param null|string $description
      * @return Thing
      */
-	public function setDescription(?string $description): ThingInterface {
-		$this->description = $description;
+    public function setDescription(?string $description): ThingInterface
+    {
+        $this->description = $description;
         return $this;
-	}
+    }
 
     /**
      * @return string|null

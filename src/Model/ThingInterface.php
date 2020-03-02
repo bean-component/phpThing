@@ -14,8 +14,27 @@ namespace Bean\Thing\Model;
  * @package Bean\Thing\Model
  */
 interface ThingInterface {
+
 	public function getId();
-	
+
+    /**
+     * @return null|array
+     */
+    public function getData(): ?array ;
+
+    /**
+     * @return null|array
+     * Eg:
+     * [
+     * 'name':
+     *      [
+     *        {'time':'2020-01-01 00:00:00.0000', 'timeZone':'Asia/Singapore','oldValue':'Value from last year', 'newValue': 'Value from this year'},
+     *        {'time':'2020-01-02 00:00:00.0000', 'timeZone':'Asia/Singapore','oldValue':'Value from last year', 'newValue': 'Value from this year'},
+     *      ]
+     * ]
+     */
+    public function getEventLog(): ?array ;
+
 	/**
 	 * @return bool
 	 */
@@ -48,11 +67,11 @@ interface ThingInterface {
      * @return ThingInterface
      */
     public function setUpdatedAt(?\DateTime $createdAt): ThingInterface;
-	
-	/**
-	 * @return null|string
-	 */
-	public function getName(): ?string;
+
+    /**
+     * @return null|string
+     */
+    public function getName(): ?string;
 
     /**
      * @param null|string $name
