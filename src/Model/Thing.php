@@ -125,7 +125,7 @@ class Thing implements ThingInterface
         }
 
         $now = new \DateTime();
-        if (is_scalar($old)) {
+        if (is_scalar($old) || is_array($old)) {
             $oldValue = $old;
         } elseif ($old instanceof \DateTime) {
             $oldValue = $old->format('Y-m-d H:i:s.v');
@@ -135,7 +135,7 @@ class Thing implements ThingInterface
             $oldValue = (string) $old;
         }
 
-        if (is_scalar($new)) {
+        if (is_scalar($new) || is_array($new)) {
             $newValue = $new;
         } elseif ($new instanceof \DateTime) {
             $newValue = $new->format('Y-m-d H:i:s.v');
