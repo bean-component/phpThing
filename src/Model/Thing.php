@@ -40,20 +40,30 @@ class Thing implements ThingInterface
     {
         if ($this->id) {
             $this->id = null;
-            $objProps = $this->getObjectProperties();
-            foreach ($objProps as $prop) {
-                $this->{$prop} = clone $this->{$prop};
+            $this->cloneObjectProperties();
+            $this->cloneArrayProperties();
+        }
+    }
+
+    protected function cloneObjectProperties()
+    {
+        $objProps = $this->getObjectProperties();
+        foreach ($objProps as $prop) {
+            $this->{$prop} = clone $this->{$prop};
+        }
+    }
+
+    protected function cloneArrayProperties()
+    {
+        $objArrayProps = $this->getObjectArrayProperties();
+        foreach ($objArrayProps as $prop => $inversedMethod) {
+            $cloned = [];
+            foreach ($this->{$prop} as $item) {
+                $clonedItem = clone $item;
+                $clonedItem->{$inversedMethod}($this);
+                $cloned[] = $clonedItem;
             }
-            $objArrayProps = $this->getObjectArrayProperties();
-            foreach ($objArrayProps as $prop => $inversedMethod) {
-                $cloned = [];
-                foreach ($this->{$prop} as $item) {
-                    $clonedItem = clone $item;
-                    $clonedItem->{$inversedMethod}($this);
-                    $cloned[] = $clonedItem;
-                }
-                $this->{$prop} = $cloned;
-            }
+            $this->{$prop} = $cloned;
         }
     }
 
